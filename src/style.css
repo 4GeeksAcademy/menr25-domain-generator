@@ -1,1 +1,7 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
+
+/*elimina el marcador de la lista*/
+.listNoPoint {
+    list-style-type: none;
+  }
+  
