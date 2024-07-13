@@ -52,13 +52,31 @@ document.addEventListener("DOMContentLoaded", function() {
     location.reload();
   });
 
+  //funcion que permite cambiar el mensaje de alerta predefinido por js
+  function showAlert(message, type) {
+    const alertContainer = document.getElementById("alertContainer");
+    const alert = document.createElement("div");
+    alert.className = `alert alert-${type} alert-dismissible fade show`;
+    alert.role = "alert";
+    alert.innerHTML = `
+      ${message}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    `;
+    alertContainer.appendChild(alert);
+
+    setTimeout(() => {
+      alert.classList.remove("show");
+      alert.addEventListener("transitionend", () => alert.remove());
+    }, 2000);
+  }
+
   //funcion para agregar elemento al array
   function addElement(array, value) {
     if (value && !array.includes(value)) {
       array.push(value);
-      alert(`${value} added to the list.`);
+      showAlert(`${value} added to the list.`, "success");
     } else {
-      alert(`${value} is already in the list or invalid.`);
+      showAlert(`${value} is already in the list or invalid.`, "warning");
     }
   }
 
@@ -67,9 +85,9 @@ document.addEventListener("DOMContentLoaded", function() {
     const index = array.indexOf(value);
     if (index !== -1) {
       array.splice(index, 1);
-      alert(`${value} removed from the list.`);
+      showAlert(`${value} removed from the list.`, "success");
     } else {
-      alert(`${value} not found in the list.`);
+      showAlert(`${value} not found in the list.`, "danger");
     }
   }
 
