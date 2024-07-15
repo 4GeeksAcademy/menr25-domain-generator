@@ -4,20 +4,19 @@ import "./style.css";
 
 import "./assets/img/rigo-baby.jpg";
 import "./assets/img/4geeks.ico";
-import { Button } from "bootstrap";
 
 document.addEventListener("DOMContentLoaded", function() {
-  // Variables
+  //variables
   let pronoun = ["the", "our"];
   let adjetive = ["great", "big"];
   let noun = ["jogger", "racoon"];
   let extension = [".com", ".net"];
 
-  // Referencias a elementos del DOM
+  //referencias a elementos del DOM
   const addButton = document.getElementById("addButton");
   const deleteButton = document.getElementById("deleteButton");
 
-  // Función para generar los dominios
+  //funcion para generar los dominios
   function domainGenerator() {
     let domains = "";
     for (let i = 0; i < pronoun.length; i++) {
@@ -32,23 +31,23 @@ document.addEventListener("DOMContentLoaded", function() {
     return domains;
   }
 
-  // Función para mostrar los dominios
+  //funcion para mostrar los dominios
   function generateDomains() {
     let paragraph = document.getElementById("domains");
     paragraph.innerText = domainGenerator();
   }
 
-  // Agregar evento al botón de generar dominios
+  //agregar evento al boton de generar dominios
   document
     .getElementById("generate")
     .addEventListener("click", generateDomains);
 
-  // Recargar la página
+  //recargar la pagina en click
   document.getElementById("reload").addEventListener("click", function() {
     location.reload();
   });
 
-  // Función para mostrar alertas
+  //funcion para mostrar alertas
   function showAlert(message, type) {
     const alertContainer = document.getElementById("alertContainer");
     const alert = document.createElement("div");
@@ -60,13 +59,14 @@ document.addEventListener("DOMContentLoaded", function() {
     `;
     alertContainer.appendChild(alert);
 
+    //tiempo de muestra de la alerta
     setTimeout(() => {
       alert.classList.remove("show");
       alert.addEventListener("transitionend", () => alert.remove());
     }, 2000);
   }
 
-  // Función para determinar la opción de radio seleccionada
+  //funcion para determinar la opcion de radio seleccionada
   function getSelectedArray() {
     const selectedOption = document.querySelector(
       'input[name="inlineRadioOptions"]:checked'
@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function() {
     return null;
   }
 
-  // Función para agregar elemento al array
+  //funcion para agregar elemento al array
   function addElement() {
     const inputElement = document.getElementById("inputElement"); // Obtener inputElement aquí
     const array = getSelectedArray();
@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   }
 
-  // Función para eliminar elemento del array
+  //funcion para eliminar elemento del array
   function deleteElement() {
     const inputElement = document.getElementById("inputElement"); // Obtener inputElement aquí
     const array = getSelectedArray();
@@ -123,15 +123,15 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   }
 
-  // Agregar elementos al hacer clic en "Add all"
+  //agregar elemento al hacer clic en "Add"
   addButton.addEventListener("click", function() {
     addElement();
-    document.getElementById("inputElement").value = ""; // Limpiar el campo de entrada
+    document.getElementById("inputElement").value = ""; //limpiar el campo de entrada
   });
 
-  // Eliminar elementos al hacer clic en "Delete all"
+  //eliminar elemento al hacer clic en "Delete"
   deleteButton.addEventListener("click", function() {
     deleteElement();
-    document.getElementById("inputElement").value = ""; // Limpiar el campo de entrada
+    document.getElementById("inputElement").value = ""; //limpiar el campo de entrada
   });
 });
