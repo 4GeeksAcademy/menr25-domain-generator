@@ -57,49 +57,75 @@
 
       <!--Form-->
       <form class="mt-5 w-50 container-fluid justify-content-center">
-        <!--Pronoun-->
+        <!--Adding or deleting element-->
         <div class="mb-3">
-          <label for="elementPronoun" class="form-label text-white"
-            >Add or delete pronoun</label
+          <label for="inputElement" class="form-label text-white"
+            >Add or delete element in the array</label
           >
-          <input type="text" class="form-control" id="elementPronoun" />
+          <input type="text" class="form-control" id="inputElement" />
         </div>
-        <!--End Pronoun-->
+        <!--Adding or deleting element-->
 
-        <!--Adjetive-->
-        <div class="mb-3">
-          <label for="elementAdjetive" class="form-label text-white"
-            >Add or delete adjetive</label
-          >
-          <input type="text" class="form-control" id="elementAdjetive" />
+        <!--Radios-->
+        <div class="container-fluid text-center mt-5 w-100">
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="inlineRadioOptions"
+              id="radioPronoun"
+              value="pronoun"
+            />
+            <label class="form-check-label text-white" for="radioPronoun"
+              >Pronoun</label
+            >
+          </div>
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="inlineRadioOptions"
+              id="radioAdjetive"
+              value="adjetive"
+            />
+            <label class="form-check-label text-white" for="radioAdjetive"
+              >Adjetive</label
+            >
+          </div>
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="inlineRadioOptions"
+              id="radioNoun"
+              value="noun"
+            />
+            <label class="form-check-label text-white" for="radioNoun"
+              >Noun</label
+            >
+          </div>
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="inlineRadioOptions"
+              id="radioExtension"
+              value="extension"
+            />
+            <label class="form-check-label text-white" for="radioExtension"
+              >Extension</label
+            >
+          </div>
         </div>
-        <!--End Adjetive-->
-
-        <!--Noun-->
-        <div class="mb-3">
-          <label for="elementNoun" class="form-label text-white"
-            >Add or delete noun</label
-          >
-          <input type="text" class="form-control" id="elementNoun" />
-        </div>
-        <!--End Noun-->
-
-        <!--Extension-->
-        <div class="mb-3">
-          <label for="elementExtension" class="form-label text-white"
-            >Add or delete extension</label
-          >
-          <input type="text" class="form-control" id="elementExtension" />
-        </div>
-        <!--End Extension-->
+        <!--End Radios-->
 
         <!--Form Buttons-->
         <div class="container-fluid text-center mt-5 w-100">
           <button id="addButton" class="btn btn-primary" type="button">
-            Add all
+            Add
           </button>
           <button id="deleteButton" class="btn btn-primary" type="button">
-            Delete all
+            Delete
           </button>
         </div>
         <!--End Form Buttons-->

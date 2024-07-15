@@ -7,21 +7,17 @@ import "./assets/img/4geeks.ico";
 import { Button } from "bootstrap";
 
 document.addEventListener("DOMContentLoaded", function() {
-  //variables
+  // Variables
   let pronoun = ["the", "our"];
   let adjetive = ["great", "big"];
   let noun = ["jogger", "racoon"];
   let extension = [".com", ".net"];
 
-  //referencias a elementos del DOM
-  const inputElementPronoun = document.getElementById("elementPronoun");
-  const inputElementAdjetive = document.getElementById("elementAdjetive");
-  const inputElementNoun = document.getElementById("elementNoun");
-  const inputElementExtension = document.getElementById("elementExtension");
+  // Referencias a elementos del DOM
   const addButton = document.getElementById("addButton");
   const deleteButton = document.getElementById("deleteButton");
 
-  //funcion para generar los dominios
+  // Función para generar los dominios
   function domainGenerator() {
     let domains = "";
     for (let i = 0; i < pronoun.length; i++) {
@@ -36,23 +32,23 @@ document.addEventListener("DOMContentLoaded", function() {
     return domains;
   }
 
-  //funcion para mostrar los dominios
+  // Función para mostrar los dominios
   function generateDomains() {
     let paragraph = document.getElementById("domains");
     paragraph.innerText = domainGenerator();
   }
 
-  //agregar evento al boton de generar dominios
+  // Agregar evento al botón de generar dominios
   document
     .getElementById("generate")
     .addEventListener("click", generateDomains);
 
-  //recargar la pagina
+  // Recargar la página
   document.getElementById("reload").addEventListener("click", function() {
     location.reload();
   });
 
-  //funcion que permite cambiar el mensaje de alerta predefinido por js
+  // Función para mostrar alertas
   function showAlert(message, type) {
     const alertContainer = document.getElementById("alertContainer");
     const alert = document.createElement("div");
@@ -70,48 +66,72 @@ document.addEventListener("DOMContentLoaded", function() {
     }, 2000);
   }
 
-  //funcion para agregar elemento al array
-  function addElement(array, value) {
-    if (value && !array.includes(value)) {
-      array.push(value);
-      showAlert(`${value} added to the list.`, "success");
+  // Función para determinar la opción de radio seleccionada
+  function getSelectedArray() {
+    const selectedOption = document.querySelector(
+      'input[name="inlineRadioOptions"]:checked'
+    );
+    if (selectedOption) {
+      switch (selectedOption.value) {
+        case "pronoun":
+          return pronoun;
+        case "adjetive":
+          return adjetive;
+        case "noun":
+          return noun;
+        case "extension":
+          return extension;
+        default:
+          return null;
+      }
+    }
+    return null;
+  }
+
+  // Función para agregar elemento al array
+  function addElement() {
+    const inputElement = document.getElementById("inputElement"); // Obtener inputElement aquí
+    const array = getSelectedArray();
+    const value = inputElement.value.trim();
+    if (array) {
+      if (value && !array.includes(value)) {
+        array.push(value);
+        showAlert(`${value} added to the list.`, "success");
+      } else {
+        showAlert(`${value} is already in the list or invalid.`, "warning");
+      }
     } else {
-      showAlert(`${value} is already in the list or invalid.`, "warning");
+      showAlert("Please select a category.", "warning");
     }
   }
 
-  //funcion para eliminar elemento del array
-  function deleteElement(array, value) {
-    const index = array.indexOf(value);
-    if (index !== -1) {
-      array.splice(index, 1);
-      showAlert(`${value} removed from the list.`, "success");
+  // Función para eliminar elemento del array
+  function deleteElement() {
+    const inputElement = document.getElementById("inputElement"); // Obtener inputElement aquí
+    const array = getSelectedArray();
+    const value = inputElement.value.trim();
+    if (array) {
+      const index = array.indexOf(value);
+      if (index !== -1) {
+        array.splice(index, 1);
+        showAlert(`${value} removed from the list.`, "success");
+      } else {
+        showAlert(`${value} not found in the list.`, "danger");
+      }
     } else {
-      showAlert(`${value} not found in the list.`, "danger");
+      showAlert("Please select a category.", "warning");
     }
   }
 
-  //agregar elementos al hacer clic en "Add all"
+  // Agregar elementos al hacer clic en "Add all"
   addButton.addEventListener("click", function() {
-    addElement(pronoun, inputElementPronoun.value);
-    addElement(adjetive, inputElementAdjetive.value);
-    addElement(noun, inputElementNoun.value);
-    addElement(extension, inputElementExtension.value);
-    inputElementPronoun.value = "";
-    inputElementAdjetive.value = "";
-    inputElementNoun.value = "";
-    inputElementExtension.value = "";
+    addElement();
+    document.getElementById("inputElement").value = ""; // Limpiar el campo de entrada
   });
 
-  //eliminar elementos al hacer clic en "Delete all"
+  // Eliminar elementos al hacer clic en "Delete all"
   deleteButton.addEventListener("click", function() {
-    deleteElement(pronoun, inputElementPronoun.value);
-    deleteElement(adjetive, inputElementAdjetive.value);
-    deleteElement(noun, inputElementNoun.value);
-    deleteElement(extension, inputElementExtension.value);
-    inputElementPronoun.value = "";
-    inputElementAdjetive.value = "";
-    inputElementNoun.value = "";
-    inputElementExtension.value = "";
+    deleteElement();
+    document.getElementById("inputElement").value = ""; // Limpiar el campo de entrada
   });
 });
