@@ -1,22 +1,15 @@
-/* eslint-disable */
 import "bootstrap";
 import "./style.css";
 
-import "./assets/img/rigo-baby.jpg";
-import "./assets/img/4geeks.ico";
-
 document.addEventListener("DOMContentLoaded", function() {
-  //variables
   let pronoun = ["the", "our"];
   let adjetive = ["great", "big"];
   let noun = ["jogger", "racoon"];
   let extension = [".com", ".net"];
 
-  //referencias a elementos del DOM
   const addButton = document.getElementById("addButton");
   const deleteButton = document.getElementById("deleteButton");
 
-  //funcion para generar los dominios
   function domainGenerator() {
     let domains = "";
     for (let i = 0; i < pronoun.length; i++) {
@@ -31,23 +24,19 @@ document.addEventListener("DOMContentLoaded", function() {
     return domains;
   }
 
-  //funcion para mostrar los dominios
   function generateDomains() {
-    let paragraph = document.getElementById("domains");
-    paragraph.innerText = domainGenerator();
+    let liElement = document.getElementById("domains");
+    liElement.innerText = domainGenerator();
   }
 
-  //agregar evento al boton de generar dominios
   document
     .getElementById("generate")
     .addEventListener("click", generateDomains);
 
-  //recargar la pagina en click
   document.getElementById("reload").addEventListener("click", function() {
     location.reload();
   });
 
-  //funcion para mostrar alertas
   function showAlert(message, type) {
     const alertContainer = document.getElementById("alertContainer");
     const alert = document.createElement("div");
@@ -59,14 +48,12 @@ document.addEventListener("DOMContentLoaded", function() {
     `;
     alertContainer.appendChild(alert);
 
-    //tiempo de muestra de la alerta
     setTimeout(() => {
       alert.classList.remove("show");
       alert.addEventListener("transitionend", () => alert.remove());
     }, 2000);
   }
 
-  //funcion para determinar la opcion de radio seleccionada
   function getSelectedArray() {
     const selectedOption = document.querySelector(
       'input[name="inlineRadioOptions"]:checked'
@@ -88,9 +75,8 @@ document.addEventListener("DOMContentLoaded", function() {
     return null;
   }
 
-  //funcion para agregar elemento al array
   function addElement() {
-    const inputElement = document.getElementById("inputElement"); // Obtener inputElement aquí
+    const inputElement = document.getElementById("inputElement");
     const array = getSelectedArray();
     const value = inputElement.value.trim();
     if (array) {
@@ -105,9 +91,8 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   }
 
-  //funcion para eliminar elemento del array
   function deleteElement() {
-    const inputElement = document.getElementById("inputElement"); // Obtener inputElement aquí
+    const inputElement = document.getElementById("inputElement");
     const array = getSelectedArray();
     const value = inputElement.value.trim();
     if (array) {
@@ -123,15 +108,13 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   }
 
-  //agregar elemento al hacer clic en "Add"
   addButton.addEventListener("click", function() {
     addElement();
-    document.getElementById("inputElement").value = ""; //limpiar el campo de entrada
+    document.getElementById("inputElement").value = "";
   });
 
-  //eliminar elemento al hacer clic en "Delete"
   deleteButton.addEventListener("click", function() {
     deleteElement();
-    document.getElementById("inputElement").value = ""; //limpiar el campo de entrada
+    document.getElementById("inputElement").value = "";
   });
 });
